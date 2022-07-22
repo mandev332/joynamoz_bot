@@ -1,0 +1,35 @@
+[
+    {
+        "id":1,
+        "name":"Tasbeh",
+        "price":15,
+        "sold":18,
+        "size":[99,1],
+        "image":"../images/Boshqa/tasbeh1.jpg",
+        "title":"Turkiya 🇹🇷"
+    },{
+        "id":2,
+        "name":"Mushkanbar",
+        "price":10,
+        "sold":15,
+        "size":[1,1],
+        "image":"../images/Boshqa/mushk.jpg",
+        "title":"O'zbekiston 🇺🇿"
+    },{
+        "id":3,
+        "name":"Misfoq",
+        "price":20,
+        "sold":25,
+        "size":[1,1],
+        "image":"../images/Boshqa/3.jpg",
+        "title":"BAA 🇦🇪"
+    },{
+        "id":4,
+        "name":"Zam-zam",
+        "price":25,
+        "sold":30,
+        "size":[0.1,1],
+        "image":"../images/Boshqa/4.jpg",
+        "title":"BAA 🇦🇪"
+    }
+]

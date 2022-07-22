@@ -1,0 +1,31 @@
+[
+    {
+        "id":1,
+        "name":"Qur'on (Arab)",
+        "price":175,
+        "sold":200,
+        "image":"../images/quron/1.jpg",
+        "title":"BAA 🇦🇪"
+    },{
+        "id":2,
+        "name":"Qur'on Tarjima (O'zb)",
+        "price":80,
+        "sold":100,
+        "image":"../images/quron/2.jpg",
+        "title":"O'zbekiston 🇺🇿"
+    },{
+        "id":3,
+        "name":"Qur'on Tarjima (O'zb)",
+        "price":50,
+        "sold":65,
+        "image":"../images/quron/3.jpg",
+        "title":"O'zbekiston 🇺🇿"
+    },{
+        "id":4,
+        "name":"Qur'on (Arab)",
+        "price":100,
+        "sold":125,
+        "image":"../images/quron/4.jpg",
+        "title":"Turkiya 🇹🇷"
+    }
+]

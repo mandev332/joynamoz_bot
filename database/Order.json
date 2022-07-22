@@ -1,0 +1,64 @@
+[
+    {
+        "user_id": 1068892885,
+        "username": "𝐌𝐀𝐍 𝐃𝐄𝐕",
+        "nik_name": "nodirbek_dev",
+        "contact": "998941984332",
+        "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 3,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 50,
+                "sold": 65,
+                "image": "../images/quron/3.jpg",
+                "title": "O'zbekiston 🇺🇿"
+            }
+        ]
+    },
+    {
+        "user_id": 1068892555,
+        "username": "𝐌𝐀𝐍 𝐃𝐄𝐕",
+        "nik_name": "nodirbek_dev",
+        "contact": "998941984332",
+        "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 3,
+                "name": "Misfoq",
+                "price": 20,
+                "sold": 25,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/3.jpg",
+                "title": "BAA 🇦🇪"
+            },
+            {
+                "id": 4,
+                "name": "Qur'on (Arab)",
+                "price": 100,
+                "sold": 125,
+                "image": "../images/quron/4.jpg",
+                "title": "Turkiya 🇹🇷"
+            },
+            {
+                "id": 4,
+                "name": "Qur'on (Arab)",
+                "price": 100,
+                "sold": 125,
+                "image": "../images/quron/4.jpg",
+                "title": "Turkiya 🇹🇷"
+            },
+            {
+                "id": 3,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 50,
+                "sold": 65,
+                "image": "../images/quron/3.jpg",
+                "title": "O'zbekiston 🇺🇿"
+            }
+        ]
+    }
+]
