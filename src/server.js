@@ -137,12 +137,15 @@ bot.on("callback_query", async (msg) => {
       if (product) productlar.push(product);
       bot.deleteMessage(chat_id, msg.message.message_id);
       bot.sendMessage(chat_id, "OK\nYana tanlang!");
+      bot.sendMessage(
+        chat_id,
+        "Yoki boshqa bo'limni tanlash orqali mahsulot\n(🛍)larni buyurtma qiling!"
+      );
       con = true;
     } else if (msg.data == "NewOrder" && con) {
-      let data = read("Order");
-      let findUser = data.find((el) => el.user_id == msg.from.id);
-      if (findUser) {
-        console.log(findUser);
+      if (productlar.length) {
+        let data = read("Order");
+        let findUser = data.find((el) => el.user_id == msg.from.id) || [];
         if (old_order) {
           let obj = {
             user_id: msg.from.id,
@@ -195,8 +198,24 @@ bot.on("callback_query", async (msg) => {
       }
     } else if (msg.data == "loc_ok" && con) {
       if (!contact || !Adress) {
-        bot.sendMessage(chat_id, "Kontakt va joylashuvni qayta kiriting!");
-        return;
+        bot.sendMessage(chat_id, "Kontakt va joylashuvni qayta kiriting!", {
+          reply_markup: {
+            keyboard: [
+              [
+                {
+                  text: "Kontakt",
+                  request_contact: true,
+                },
+
+                {
+                  text: "Cancel",
+                  callback_data: "/back",
+                },
+              ],
+            ],
+            resize_keyboard: true,
+          },
+        });
       }
       let data = read("Order");
       let obj = {
@@ -221,33 +240,41 @@ bot.on("callback_query", async (msg) => {
     } else if (msg.data[0] == "X") {
       bot.deleteMessage(chat_id, msg.message.message_id);
     } else if (parseInt(msg.data)) {
-      // if (message_id) bot.deleteMessage(chat_id, msg.message.message_id);
-      let data = read(filePath);
-      let find = data.find((e) => e.id == msg.data);
-      let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
+      try {
+        // if (message_id) bot.deleteMessage(chat_id, msg.message.message_id);
+        let data = read(filePath);
+        let find = data.find((e) => e.id == msg.data);
+        let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
 
-      find.size && find.size instanceof Array
-        ? (desc += `O'lchami: ${find.size[0]} x ${find.size[1]}`)
-        : (desc += ` `);
+        find.size && find.size instanceof Array
+          ? (desc += `O'lchami: ${find.size[0]} x ${find.size[1]}`)
+          : (desc += ` `);
 
-      bot.sendPhoto(chat_id, "./images/" + filePath + "/" + msg.data + ".jpg", {
-        caption: `${desc}`,
-        parse_mode: "HTML",
-        reply_markup: {
-          inline_keyboard: [
-            [
-              {
-                text: "🛒",
-                callback_data: "Z_" + msg.data,
-              },
-              {
-                text: "❌",
-                callback_data: "X_" + msg.data,
-              },
-            ],
-          ],
-        },
-      });
+        bot.sendPhoto(
+          chat_id,
+          "./images/" + filePath + "/" + msg.data + ".jpg",
+          {
+            caption: `${desc}`,
+            parse_mode: "HTML",
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "🛒",
+                    callback_data: "Z_" + msg.data,
+                  },
+                  {
+                    text: "❌",
+                    callback_data: "X_" + msg.data,
+                  },
+                ],
+              ],
+            },
+          }
+        );
+      } catch (err) {
+        console.log("/back");
+      }
     } else if (msg.data == "Order") {
       let datas = read(msg.data);
       let desc = ``;
@@ -282,9 +309,11 @@ bot.on("callback_query", async (msg) => {
           inline_keyboard: buttons,
         },
       });
+    } else if (msg.data == "/back") {
+      console.log("/back");
     }
   } catch (err) {
-    console.log(err);
+    console.log("/start");
   }
 });
 
