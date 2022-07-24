@@ -14,9 +14,9 @@ bot.on("error", console.error);
 let Adress = "";
 let contact = "";
 let filePath = "";
-let productlar = [];
-let message_id;
+let old_order = false;
 let con = 0;
+let productlar = [];
 
 function read(adress) {
   let datas = fs.readFileSync(
@@ -27,6 +27,8 @@ function read(adress) {
 }
 
 bot.onText(/\/start/, (msg) => {
+  if (msg.from.is_bot) return;
+  productlar = [];
   bot.sendMessage(
     msg.from.id,
     "Assalomu alaykum! " + "\n" + msg.from.first_name,
@@ -46,8 +48,8 @@ bot.onText(/\/start/, (msg) => {
 });
 
 bot.on("message", (msg) => {
+  console.log(msg.text);
   const chat_id = msg.from.id;
-
   if (msg.text == "MENU 📋") {
     bot.sendMessage(chat_id, "Svg'alar 🎁", {
       reply_markup: {
@@ -96,8 +98,22 @@ bot.on("message", (msg) => {
     }
     buttons.push(button);
     let findUser = orders.find((el) => el.user_id == msg.from.id);
-    if (findUser) {
-      buttons.push([{ text: "Buyutmalarim 🛍", callback_data: "Order" }]);
+    old_order = findUser ? true : false;
+    if (findUser?.products.length) {
+      buttons.push([
+        {
+          text: "Mening   🛍 larim",
+          callback_data: "Order",
+        },
+      ]);
+    }
+    if (productlar.length) {
+      buttons.push([
+        {
+          text: "Yangi " + productlar.length + " ta   🛍ni qo'shish",
+          callback_data: "NewOrder",
+        },
+      ]);
     }
 
     bot.sendPhoto(chat_id, "./images/" + filePath + "/main.jpg", {
@@ -107,65 +123,105 @@ bot.on("message", (msg) => {
         inline_keyboard: buttons,
       },
     });
+  } else if (msg.text == "/back") {
+    console.log("Ortga      ");
   }
 });
 
 bot.on("callback_query", async (msg) => {
   try {
-    console.log(msg);
     const chat_id = msg.message?.chat.id;
     if (msg.data[0] == "Z") {
       let datas = read(filePath);
       let product = datas.find((pro) => pro.id == msg.data.slice(2));
       if (product) productlar.push(product);
-      bot.sendMessage(chat_id, "Kontaktingizni yuboring!", {
-        reply_markup: {
-          keyboard: [
-            [
-              {
-                text: "Kontakt",
-                request_contact: true,
-              },
-            ],
-            ["Cancel"],
-          ],
-          resize_keyboard: true,
-        },
-      });
-    } else if (msg.data == "loc_ok" && con) {
+      bot.deleteMessage(chat_id, msg.message.message_id);
+      bot.sendMessage(chat_id, "OK\nYana tanlang!");
+      con = true;
+    } else if (msg.data == "NewOrder" && con) {
       let data = read("Order");
-      if (!msg.from.is_bot) {
-        let users = data.find((u) => u.user_id == msg.from.id) || [];
-        let obj = {
-          user_id: msg.from.id,
-          username: msg.from.first_name,
-          nik_name: msg.from.username,
-          contact,
-          adress: Adress,
-          products: users?.products?.length
-            ? [...users.products, ...productlar]
-            : [...productlar],
-        };
-        let find = data.findIndex((user) => user.user_id == msg.from.id);
-        if (find != -1) {
-          data[find] = obj;
+      let findUser = data.find((el) => el.user_id == msg.from.id);
+      if (findUser) {
+        console.log(findUser);
+        if (old_order) {
+          let obj = {
+            user_id: msg.from.id,
+            username: msg.from.first_name,
+            nik_name: msg.from.username,
+            contact,
+            adress: Adress,
+            products: findUser?.products?.length
+              ? [...findUser.products, ...productlar]
+              : [...productlar],
+          };
+          obj.products.map((el, i) =>
+            el.product_id ? el : (el.product_id = i + 1)
+          );
+          let find = data.findIndex((user) => user.user_id == msg.from.id);
+          if (find != -1) {
+            data[find] = obj;
+          } else {
+            data.push(obj);
+          }
+          await fs.writeFileSync(
+            path.join(process.cwd(), "database", "Order.json"),
+            JSON.stringify(data, null, 4)
+          );
+          bot.deleteMessage(chat_id, msg.message.message_id);
+          bot.sendMessage(chat_id, "✔️");
+          con = 0;
         } else {
-          data.push(obj);
+          bot.sendMessage(chat_id, "Kontaktingizni yuboring!", {
+            reply_markup: {
+              keyboard: [
+                [
+                  {
+                    text: "Kontakt",
+                    request_contact: true,
+                  },
+
+                  {
+                    text: "Cancel",
+                    callback_data: "/back",
+                  },
+                ],
+              ],
+              resize_keyboard: true,
+            },
+          });
         }
-        await fs.writeFileSync(
-          path.join(process.cwd(), "database", "Order.json"),
-          JSON.stringify(data, null, 4)
-        );
+      } else {
+        bot.sendMessage(chat_id, "Avval maxsulot tanlang!");
       }
-      bot.sendSticker(chat_id, "✔️");
-      // bot.deleteMessage(chat_id, msg.message.message_id);
+    } else if (msg.data == "loc_ok" && con) {
+      if (!contact || !Adress) {
+        bot.sendMessage(chat_id, "Kontakt va joylashuvni qayta kiriting!");
+        return;
+      }
+      let data = read("Order");
+      let obj = {
+        user_id: msg.from.id,
+        username: msg.from.first_name,
+        nik_name: msg.from.username,
+        contact,
+        adress: Adress,
+        products: productlar,
+      };
+      obj.products.map((el, i) =>
+        el.product_id ? el : (el.product_id = i + 1)
+      );
+      data.push(obj);
+      await fs.writeFileSync(
+        path.join(process.cwd(), "database", "Order.json"),
+        JSON.stringify(data, null, 4)
+      );
+      bot.deleteMessage(chat_id, msg.message.message_id);
+      bot.sendMessage(chat_id, "✔️");
       con = 0;
     } else if (msg.data[0] == "X") {
       bot.deleteMessage(chat_id, msg.message.message_id);
     } else if (parseInt(msg.data)) {
       // if (message_id) bot.deleteMessage(chat_id, msg.message.message_id);
-      message_id = msg.message.message_id;
-      console.log(msg.message.message_id);
       let data = read(filePath);
       let find = data.find((e) => e.id == msg.data);
       let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
@@ -200,15 +256,18 @@ bot.on("callback_query", async (msg) => {
       let user = datas.find((u) => u.user_id == msg.from.id);
       if (user) {
         for (let data of user.products) {
-          let { id, name, title } = data;
+          let { product_id, id, name, title } = data;
           desc +=
-            id +
+            product_id +
             ":    <strong>" +
             name +
             "</strong>   <i>(" +
             title +
             ")</i> \n";
-          button.push({ text: id + " ❌", callback_data: "order_" + id });
+          button.push({
+            text: product_id + " ❌",
+            callback_data: "X_," + id + "," + name + "," + title,
+          });
           if (button.length == 5) {
             buttons.push(button);
             button = [];
@@ -232,13 +291,17 @@ bot.on("callback_query", async (msg) => {
 bot.on("contact", (msg) => {
   const chat_id = msg.from.id;
   contact = msg.contact.phone_number;
-  bot.sendMessage(chat_id, "Locatsiyani jo'nating", {
+  bot.sendMessage(chat_id, "Joylashuvni jo'nating", {
     reply_markup: {
       keyboard: [
         [
           {
             text: "Location 📍",
             request_location: true,
+          },
+          {
+            text: "Cancel",
+            callback_data: "/back",
           },
         ],
       ],
