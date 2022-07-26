@@ -1,12 +1,13 @@
 [
     {
         "user_id": 1068892885,
-        "username": "𝐌𝐀𝐍 𝐃𝐄𝐕",
-        "nik_name": "nodirbek_dev",
-        "contact": "998941984332",
+        "username": "Ohun",
+        "nik_name": "ohunbek",
+        "contact": "+998941984332",
         "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
         "products": [
             {
+                "product_id": 1,
                 "id": 3,
                 "name": "Qur'on Tarjima (O'zb)",
                 "price": 50,
@@ -17,13 +18,14 @@
         ]
     },
     {
-        "user_id": 1068892555,
-        "username": "𝐌𝐀𝐍 𝐃𝐄𝐕",
-        "nik_name": "nodirbek_dev",
-        "contact": "998941984332",
+        "user_id": 1068892588,
+        "username": "Kamoliddin",
+        "nik_name": "kamoljon",
+        "contact": "+998941984332",
         "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
         "products": [
             {
+                "product_id": 1,
                 "id": 3,
                 "name": "Misfoq",
                 "price": 20,
@@ -36,6 +38,7 @@
                 "title": "BAA 🇦🇪"
             },
             {
+                "product_id": 2,
                 "id": 4,
                 "name": "Qur'on (Arab)",
                 "price": 100,
@@ -44,6 +47,7 @@
                 "title": "Turkiya 🇹🇷"
             },
             {
+                "product_id": 3,
                 "id": 4,
                 "name": "Qur'on (Arab)",
                 "price": 100,
@@ -52,12 +56,577 @@
                 "title": "Turkiya 🇹🇷"
             },
             {
+                "product_id": 4,
                 "id": 3,
                 "name": "Qur'on Tarjima (O'zb)",
                 "price": 50,
                 "sold": 65,
                 "image": "../images/quron/3.jpg",
                 "title": "O'zbekiston 🇺🇿"
+            },
+            {
+                "id": 2,
+                "name": "To'qima",
+                "price": 65,
+                "sold": 85,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 5
+            }
+        ]
+    },
+    {
+        "user_id": 1331260641,
+        "username": "NOSIROV ANVARJON",
+        "nik_name": "Programis_2002",
+        "contact": "+998911723262",
+        "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 2,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 80,
+                "sold": 100,
+                "image": "../images/quron/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 1
+            },
+            {
+                "id": 4,
+                "name": "Zam-zam",
+                "price": 25,
+                "sold": 30,
+                "size": [
+                    0.1,
+                    1
+                ],
+                "image": "../images/Boshqa/4.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 2
+            },
+            {
+                "id": 3,
+                "name": "Otamga",
+                "price": 350,
+                "sold": 400,
+                "size": [
+                    60,
+                    40
+                ],
+                "image": "../images/Nabor/3.jpg",
+                "title": "2 qavatli 1 kishilik",
+                "product_id": 3
+            },
+            {
+                "id": 3,
+                "name": "Fabrika",
+                "price": 50,
+                "sold": 65,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/3.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 4
+            },
+            {
+                "id": 4,
+                "name": "Qur'on (Arab)",
+                "price": 100,
+                "sold": 125,
+                "image": "../images/quron/4.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 5
+            },
+            {
+                "id": 4,
+                "name": "Qur'on (Arab)",
+                "price": 100,
+                "sold": 125,
+                "image": "../images/quron/4.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 6
+            }
+        ]
+    },
+    {
+        "user_id": 1331220641,
+        "username": "ANVARJON",
+        "nik_name": "Programer_2002",
+        "contact": "+998911723262",
+        "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 2,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 80,
+                "sold": 100,
+                "image": "../images/quron/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 1
+            }
+        ]
+    },
+    {
+        "user_id": 1048894555,
+        "username": "𝐌𝐀𝐍",
+        "nik_name": "nodirbek",
+        "contact": "+99894198844",
+        "adress": "Chilanzar-14 9, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 2,
+                "name": "Mushkanbar",
+                "price": 10,
+                "sold": 15,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/mushk.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 1
+            },
+            {
+                "id": 1,
+                "name": "Qur'on (Arab)",
+                "price": 175,
+                "sold": 200,
+                "image": "../images/quron/1.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 2
+            },
+            {
+                "id": 1,
+                "name": "Mehli",
+                "price": 90,
+                "sold": 110,
+                "size": [
+                    1.2,
+                    70
+                ],
+                "image": "../images/joynamoz/1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 3
+            },
+            {
+                "id": 3,
+                "name": "Fabrika",
+                "price": 50,
+                "sold": 65,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/3.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 4
+            }
+        ]
+    },
+    {
+        "user_id": 1069992555,
+        "username": "𝐃𝐄𝐕",
+        "nik_name": "bek_dev",
+        "contact": "+998977106004",
+        "adress": "Chilanzar-8 10, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 2,
+                "name": "Mushkanbar",
+                "price": 10,
+                "sold": 15,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/mushk.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 1
+            },
+            {
+                "id": 2,
+                "name": "To'qima",
+                "price": 65,
+                "sold": 85,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 2
+            },
+            {
+                "id": 2,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 80,
+                "sold": 100,
+                "image": "../images/quron/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 3
+            },
+            {
+                "id": 3,
+                "name": "Fabrika",
+                "price": 50,
+                "sold": 65,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/3.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 4
+            },
+            {
+                "id": 3,
+                "name": "Fabrika",
+                "price": 50,
+                "sold": 65,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/3.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 5
+            },
+            {
+                "id": 4,
+                "name": "Mehli",
+                "price": 100,
+                "sold": 115,
+                "size": [
+                    1.3,
+                    75
+                ],
+                "image": "../images/joynamoz/4.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 6
+            }
+        ]
+    },
+    {
+        "user_id": 1068894555,
+        "username": "𝐃ilshoda",
+        "nik_name": "dilshoda",
+        "contact": "+998941984333",
+        "adress": "unnamed road, Dustlik, Jizzakh Region, Uzbekistan, 130203",
+        "products": [
+            {
+                "id": 3,
+                "name": "Misfoq",
+                "price": 20,
+                "sold": 25,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/3.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 1
+            },
+            {
+                "id": 1,
+                "name": "Tasbeh",
+                "price": 15,
+                "sold": 18,
+                "size": [
+                    99,
+                    1
+                ],
+                "image": "../images/Boshqa/tasbeh1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 2
+            }
+        ]
+    },
+    {
+        "user_id": 1088925515,
+        "username": "𝐃𝐄𝐕",
+        "nik_name": "nodir_dev",
+        "contact": "+998911887777",
+        "adress": "Hotel-777, Dustlik, Jizzakh Region, Uzbekistan, 130203",
+        "products": [
+            {
+                "id": 2,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 80,
+                "sold": 100,
+                "image": "../images/quron/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 1
+            },
+            {
+                "id": 2,
+                "name": "To'qima",
+                "price": 65,
+                "sold": 85,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 2
+            },
+            {
+                "id": 1,
+                "name": "Qur'on (Arab)",
+                "price": 175,
+                "sold": 200,
+                "image": "../images/quron/1.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 3
+            }
+        ]
+    },
+    {
+        "user_id": 1028802555,
+        "username": "𝐌𝐀V𝐄𝐕",
+        "nik_name": "nodirbek_dev",
+        "contact": "+998941233321",
+        "adress": "shopping, Dustlik, Jizzakh Region, Uzbekistan, 130203",
+        "products": [
+            {
+                "id": 1,
+                "name": "Mehli",
+                "price": 90,
+                "sold": 110,
+                "size": [
+                    1.2,
+                    70
+                ],
+                "image": "../images/joynamoz/1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 1
+            },
+            {
+                "id": 1,
+                "name": "Mehli",
+                "price": 90,
+                "sold": 110,
+                "size": [
+                    1.2,
+                    70
+                ],
+                "image": "../images/joynamoz/1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 2
+            },
+            {
+                "id": 3,
+                "name": "Fabrika",
+                "price": 50,
+                "sold": 65,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/3.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 3
+            },
+            {
+                "id": 1,
+                "name": "Qur'on (Arab)",
+                "price": 175,
+                "sold": 200,
+                "image": "../images/quron/1.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 4
+            },
+            {
+                "id": 1,
+                "name": "Mehli",
+                "price": 90,
+                "sold": 110,
+                "size": [
+                    1.2,
+                    70
+                ],
+                "image": "../images/joynamoz/1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 5
+            },
+            {
+                "id": 3,
+                "name": "Fabrika",
+                "price": 50,
+                "sold": 65,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/3.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 6
+            },
+            {
+                "id": 2,
+                "name": "Qur'on Tarjima (O'zb)",
+                "price": 80,
+                "sold": 100,
+                "image": "../images/quron/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 7
+            },
+            {
+                "id": 2,
+                "name": "To'qima",
+                "price": 65,
+                "sold": 85,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/2.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 8
+            },
+            {
+                "id": 1,
+                "name": "Mehli",
+                "price": 90,
+                "sold": 110,
+                "size": [
+                    1.2,
+                    70
+                ],
+                "image": "../images/joynamoz/1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 9
+            }
+        ]
+    },
+    {
+        "user_id": 1434141401,
+        "username": ".",
+        "contact": "+998993386470",
+        "adress": "unnamed road, Dustlik, Jizzakh Region, Uzbekistan, 130203",
+        "products": []
+    },
+    {
+        "user_id": 8068892555,
+        "username": "Odilbek 𝐃𝐄𝐕",
+        "nik_name": "odilbek_dev",
+        "contact": "+998942354332",
+        "adress": "unnamed road, Dustlik, Jizzakh Region, Uzbekistan, 130203",
+        "products": [
+            {
+                "id": 1,
+                "name": "Tasbeh",
+                "price": 15,
+                "sold": 18,
+                "size": [
+                    99,
+                    1
+                ],
+                "image": "../images/Boshqa/tasbeh1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 1
+            },
+            {
+                "id": 2,
+                "name": "Mushkanbar",
+                "price": 10,
+                "sold": 15,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/mushk.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 2
+            },
+            {
+                "id": 3,
+                "name": "Misfoq",
+                "price": 20,
+                "sold": 25,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/3.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 3
+            }
+        ]
+    },
+    {
+        "user_id": 853927700,
+        "username": "Abdurahmon",
+        "nik_name": "Alamxonov",
+        "contact": "+998942752700",
+        "adress": "Chilanzar-25 4, Uzbekistan, 100000",
+        "products": [
+            {
+                "id": 4,
+                "name": "Zam-zam",
+                "price": 25,
+                "sold": 30,
+                "size": [
+                    0.1,
+                    1
+                ],
+                "image": "../images/Boshqa/4.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 1
+            },
+            {
+                "id": 4,
+                "name": "Zam-zam",
+                "price": 25,
+                "sold": 30,
+                "size": [
+                    0.1,
+                    1
+                ],
+                "image": "../images/Boshqa/4.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 2
+            }
+        ]
+    },
+    {
+        "user_id": 1068892555,
+        "username": "𝐌𝐀𝐍 𝐃𝐄𝐕",
+        "nik_name": "nodirbek_dev",
+        "contact": "+998941984332",
+        "adress": "Chilanzar-9 9а, Tashkent, Uzbekistan, 100097",
+        "products": [
+            {
+                "id": 1,
+                "name": "Ka'ba",
+                "price": 450,
+                "sold": 500,
+                "size": [
+                    40,
+                    40
+                ],
+                "image": "../images/Nabor/1.jpg",
+                "title": "2 qavatli 1 kishilik",
+                "product_id": 1
+            },
+            {
+                "id": 3,
+                "name": "Misfoq",
+                "price": 20,
+                "sold": 25,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/3.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 2
             }
         ]
     }
