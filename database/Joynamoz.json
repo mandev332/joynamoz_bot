@@ -1,7 +1,7 @@
 [
     {
         "id":1,
-        "name":"Mehli",
+        "name":"Iden",
         "price":90,
         "sold":110,
         "size":[1.20,70],
@@ -9,23 +9,23 @@
         "title":"Turkiya 🇹🇷"
     },{
         "id":2,
-        "name":"To'qima",
+        "name":"Iden",
         "price":65,
         "sold":85,
         "size":[1.00,60],
         "image":"../images/joynamoz/2.jpg",
-        "title":"O'zbekiston 🇺🇿"
+        "title":"Turkiya 🇹🇷"
     },{
         "id":3,
-        "name":"Fabrika",
-        "price":50,
-        "sold":65,
+        "name":"Ko'rpacha",
+        "price":75,
+        "sold":85,
         "size":[1.00,60],
         "image":"../images/joynamoz/3.jpg",
         "title":"O'zbekiston 🇺🇿"
     },{
         "id":4,
-        "name":"Mehli",
+        "name":"Yig'ma",
         "price":100,
         "sold":115,
         "size":[1.30,75],
