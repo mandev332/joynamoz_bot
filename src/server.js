@@ -24,7 +24,6 @@ let productlar = [];
 
 bot.onText(/\/start/, (msg) => {
   if (msg.from.is_bot) return;
-  productlar = [];
   bot.sendMessage(
     msg.from.id,
     "Assalomu alaykum! " + "\n" + msg.from.first_name + "\nMENU ni bosing!",
@@ -44,6 +43,7 @@ async function toM(arg) {
 
 bot.on("message", (msg) => {
   chat += 1;
+  productlar = [];
   const chat_id = msg.from.id;
   if (msg.text == "MENU 📋") {
     console.log(keyboards.royxat);
