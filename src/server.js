@@ -43,11 +43,9 @@ async function toM(arg) {
 
 bot.on("message", (msg) => {
   chat += 1;
-  productlar = [];
   const chat_id = msg.from.id;
   if (msg.text == "MENU 📋") {
-    console.log(keyboards.royxat);
-
+    productlar = [];
     if (msg.from.id == admin) {
       bot.sendMessage(chat_id, "Siz 👮‍♂️ (ADMIN)", {
         reply_markup: {
