@@ -1,6 +1,6 @@
 export default {
   menu: {
-    text: "MENU 📋",
+    text: "RO'YXAT 📋",
   },
   joynamoz: {
     text: "Joynamoz",
