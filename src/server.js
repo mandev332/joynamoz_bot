@@ -26,7 +26,7 @@ bot.onText(/\/start/, (msg) => {
   if (msg.from.is_bot) return;
   bot.sendMessage(
     msg.from.id,
-    "Assalomu alaykum! " + "\n" + msg.from.first_name + "\nMENU ni bosing!",
+    "Assalomu alaykum! " + "\n" + msg.from.first_name + "\nRO'YXAT ni bosing!",
     {
       reply_markup: {
         keyboard: [keyboards.menu],
@@ -44,7 +44,7 @@ async function toM(arg) {
 bot.on("message", (msg) => {
   chat += 1;
   const chat_id = msg.from.id;
-  if (msg.text == "MENU 📋") {
+  if (msg.text == "RO'YXAT 📋") {
     productlar = [];
     if (msg.from.id == admin) {
       bot.sendMessage(chat_id, "Siz 👮‍♂️ (ADMIN)", {
@@ -165,7 +165,7 @@ bot.on("callback_query", async (msg) => {
           bot.deleteMessage(chat_id, msg.message.message_id);
           bot.sendMessage(chat_id, "✔️", {
             reply_markup: {
-              keyboard: [[{ text: "MENU 📋" }]],
+              keyboard: [[{ text: "RO'YXAT 📋" }]],
               resize_keyboard: true,
             },
           });
@@ -212,7 +212,7 @@ bot.on("callback_query", async (msg) => {
         bot.deleteMessage(chat_id, msg.message.message_id);
         bot.sendMessage(chat_id, "✔️", {
           reply_markup: {
-            keyboard: [[{ text: "MENU 📋" }]],
+            keyboard: [[{ text: "RO'YXAT 📋" }]],
             resize_keyboard: true,
           },
         });
