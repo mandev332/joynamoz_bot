@@ -20,8 +20,8 @@
         "name":"Qur'on Tarjima (O'zb)",
         "price":50,
         "sold":65,
-
-"size":[1,1],        "image":"../images/quron/3.jpg",
+        "size":[1,1],
+        "image":"../images/quron/3.jpg",
         "title":"Turkiya 🇹🇷"
     },{
         "id":4,
