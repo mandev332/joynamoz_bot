@@ -28,10 +28,6 @@ export default {
         i.category +
         "\n   Narxi: " +
         i.price +
-        "\n   O'lchami: " +
-        (i.size[0] ? i.size[0] : 1) +
-        "x" +
-        (i.size[1] ? i.size[1] : 1) +
         "\n   Qo'sh. ma'l: " +
         i.title +
         "\n";

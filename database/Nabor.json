@@ -5,7 +5,6 @@
         "category":"Nabor",
         "price":450,
         "sold":500,
-        "size":[40,40],
         "image":"../images/Nabor/1.jpg",
         "title":"2 qavatli 1 kishilik"
     },{
@@ -14,7 +13,6 @@
         "category":"Nabor",
         "price":350,
         "sold":400,
-        "size":[60,40],
         "image":"../images/Nabor/2.jpg",
         "title":"2 qavatli 1 kishilik"
     },{
@@ -23,7 +21,6 @@
         "category":"Nabor",
         "price":350,
         "sold":400,
-        "size":[60,40],
         "image":"../images/Nabor/3.jpg",
         "title":"2 qavatli 1 kishilik"
     },{
@@ -32,7 +29,6 @@
         "category":"Nabor",
         "price":600,
         "sold":700,
-        "size":[80,40],
         "image":"../images/Nabor/4.jpg",
         "title":"2 qavatli 2 kishilik"
     }

@@ -7,6 +7,11 @@ export default {
     [btn_t.nabor, btn_t.boshqa],
     [btn_t.ortga],
   ],
+  royxat2: [
+    [btn_t.joynamoz2, btn_t.quron2],
+    [btn_t.nabor2, btn_t.boshqa2],
+    [btn_t.ortga],
+  ],
   admin: [[btn_t.GET, btn_t.POST], [btn_t.PUT, btn_t.DELETE], [btn_t.ortga]],
 
   contact: [[btn_t.kontact], [btn_t.ortga]],

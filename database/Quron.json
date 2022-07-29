@@ -5,7 +5,6 @@
         "category":"Quron",
         "price":175,
         "sold":200,
-        "size":[1,1],
         "image":"../images/quron/1.jpg",
         "title":"BAA 🇦🇪"
     },{
@@ -14,7 +13,6 @@
         "category":"Quron",
         "price":80,
         "sold":100,
-        "size":[1,1],
         "image":"../images/quron/2.jpg",
         "title":"O'zbekiston 🇺🇿"
     },{
@@ -23,7 +21,6 @@
         "category":"Quron",
         "price":50,
         "sold":65,
-        "size":[1,1],
         "image":"../images/quron/3.jpg",
         "title":"Turkiya 🇹🇷"
     },{
@@ -32,7 +29,6 @@
         "category":"Quron",
         "price":100,
         "sold":125,
-        "size":[1,1],
         "image":"../images/quron/4.jpg",
         "title":"O'zbekiston 🇺🇿"
     }

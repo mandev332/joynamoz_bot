@@ -14,6 +14,18 @@ export default {
   boshqa: {
     text: "Boshqa",
   },
+  joynamoz2: {
+    text: "Joynamoz+",
+  },
+  quron2: {
+    text: "Quron+",
+  },
+  nabor2: {
+    text: "Nabor+",
+  },
+  boshqa2: {
+    text: "Boshqa+",
+  },
   ortga: {
     text: "Ortga",
   },

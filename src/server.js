@@ -22,9 +22,13 @@ let filePath = "";
 let old_order = false;
 let productlar = [];
 
-bot.onText(/\/start/, (msg) => {
+bot.onText(/\/start/, async (msg) => {
   if (msg.from.is_bot) return;
-  bot.sendMessage(
+  await bot.sendSticker(
+    msg.from.id,
+    "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/11.webp"
+  );
+  await bot.sendMessage(
     msg.from.id,
     "Assalomu alaykum! " +
       "\n" +
@@ -39,12 +43,13 @@ bot.onText(/\/start/, (msg) => {
   );
 });
 
-async function toM(arg) {
+async function toMessageAdmin(arg) {
   let xabar = func.toMessage(arg);
-  bot.sendMessage(1434141401, xabar);
+  bot.sendMessage(admin, xabar);
 }
 
 bot.on("message", (msg) => {
+  console.log(msg);
   chat += 1;
   const chat_id = msg.from.id;
   if (msg.text == "RO'YXAT 📋") {
@@ -67,7 +72,32 @@ bot.on("message", (msg) => {
     }
   } else if (msg.text == "Ko'rish") {
     let data = func.read("Order");
-    console.log(data);
+    data.forEach((e) => {
+      toMessageAdmin(e);
+    });
+  } else if (msg.text == "Qo'shish") {
+    console.log("qo'shish");
+    bot.sendMessage(admin, "Mahsulot bo'limini tanlang!", {
+      reply_markup: {
+        keyboard: keyboards.royxat2,
+        resize_keyboard: true,
+      },
+    });
+  } else if (msg.text[0] == "+") {
+    if (msg.text.length == 13) {
+      let data = func.read("Order");
+      let user = data.find((e) => e.contact == msg.text);
+      if (user) toMessageAdmin(user);
+      else bot.sendMessage(chat_id, "Topilmadi❗️");
+    } else {
+      bot.sendMessage(chat_id, "Xato ❌");
+    }
+  } else if (
+    msg.text == "Joynamoz+" ||
+    msg.text == "Quron+" ||
+    msg.text == "Nabor+" ||
+    msg.text == "Boshqa+"
+  ) {
   } else if (
     msg.text == "Joynamoz" ||
     msg.text == "Quron" ||
@@ -102,14 +132,6 @@ bot.on("message", (msg) => {
       ]);
       con = 1;
     }
-    if (productlar.length) {
-      buttons.push([
-        {
-          text: "Yangi " + productlar.length + " ta   🛍ni qo'shish",
-          callback_data: "NewOrder",
-        },
-      ]);
-    }
 
     bot.sendPhoto(chat_id, "./images/" + filePath + "/main.jpg", {
       caption: desc,
@@ -135,11 +157,23 @@ bot.on("callback_query", async (msg) => {
       let product = datas.find((pro) => pro.id == msg.data.slice(2));
       if (product) productlar.push(product);
       bot.deleteMessage(chat_id, msg.message.message_id);
-      bot.sendMessage(chat_id, "Yaxshi\nYana tanlang!");
-      bot.sendMessage(
-        chat_id,
-        "Boshqa bo'limni tanlang!\nShunda tanlagan mahsulotlaringizni qo'shish uchun tugma paydo bo'ladi!"
-      );
+      bot.sendMessage(chat_id, "Yaxshi\nYana tanlang!", {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text:
+                  "🛒 dagi   " +
+                  productlar.length +
+                  " ta  🛍ni  adminga jo'natish",
+                callback_data: "NewOrder",
+              },
+            ],
+          ],
+          resize_keyboard: true,
+        },
+      });
+
       con = 1;
     } else if (msg.data == "NewOrder" && con) {
       if (productlar.length) {
@@ -174,7 +208,7 @@ bot.on("callback_query", async (msg) => {
               resize_keyboard: true,
             },
           });
-          toM(obj);
+          toMessageAdmin(obj);
           con = 0;
         } else {
           bot.sendMessage(chat_id, "Kontaktingizni yuboring!", {
@@ -211,7 +245,7 @@ bot.on("callback_query", async (msg) => {
         );
         data.push(obj);
         func.write("Order", data);
-        toM(obj);
+        toMessageAdmin(obj);
         bot.deleteMessage(chat_id, msg.message.message_id);
         bot.sendMessage(chat_id, "✅ Siz bilan Admin bog'lanadi!", {
           reply_markup: {
@@ -303,7 +337,7 @@ bot.on("callback_query", async (msg) => {
         return el;
       });
       func.write("Order", orders);
-      toM(orders[find]);
+      toMessageAdmin(orders[find]);
       bot.deleteMessage(chat_id, msg.message.message_id);
 
       bot.sendMessage(chat_id, "✅ " + id + "-o'chirildi", {

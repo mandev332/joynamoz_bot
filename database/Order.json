@@ -3,8 +3,9 @@
         "user_id": 1068892885,
         "username": "Ohun",
         "nik_name": "ohunbek",
-        "contact": "+998941984332",
+        "contact": "+998941984344",
         "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
+        "date": "Jul-24-2022",
         "products": [
             {
                 "product_id": 1,
@@ -26,8 +27,9 @@
         "user_id": 1068892588,
         "username": "Kamoliddin",
         "nik_name": "kamoljon",
-        "contact": "+998941984332",
+        "contact": "+998941984434",
         "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
+        "date": "Jul-27-2022",
         "products": [
             {
                 "product_id": 1,
@@ -94,6 +96,48 @@
                 "image": "../images/joynamoz/1.jpg",
                 "title": "Turkiya 🇹🇷",
                 "product_id": 3
+            },
+            {
+                "id": 2,
+                "name": "Mushkanbar",
+                "category": "Boshqa",
+                "price": 10,
+                "sold": 15,
+                "size": [
+                    1,
+                    1
+                ],
+                "image": "../images/Boshqa/mushk.jpg",
+                "title": "O'zbekiston 🇺🇿",
+                "product_id": 4
+            },
+            {
+                "id": 4,
+                "name": "Zam-zam",
+                "category": "Boshqa",
+                "price": 25,
+                "sold": 30,
+                "size": [
+                    0.1,
+                    1
+                ],
+                "image": "../images/Boshqa/4.jpg",
+                "title": "BAA 🇦🇪",
+                "product_id": 5
+            },
+            {
+                "id": 2,
+                "name": "Iden",
+                "category": "Joynamoz",
+                "price": 65,
+                "sold": 85,
+                "size": [
+                    1,
+                    60
+                ],
+                "image": "../images/joynamoz/2.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 6
             }
         ]
     }

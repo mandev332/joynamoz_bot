@@ -5,7 +5,6 @@
         "category":"Boshqa",
         "price":15,
         "sold":18,
-        "size":[99,1],
         "image":"../images/Boshqa/tasbeh1.jpg",
         "title":"Turkiya 🇹🇷"
     },{
@@ -14,7 +13,6 @@
         "category":"Boshqa",
         "price":10,
         "sold":15,
-        "size":[1,1],
         "image":"../images/Boshqa/mushk.jpg",
         "title":"O'zbekiston 🇺🇿"
     },{
@@ -23,7 +21,6 @@
         "category":"Boshqa",
         "price":20,
         "sold":25,
-        "size":[1,1],
         "image":"../images/Boshqa/3.jpg",
         "title":"BAA 🇦🇪"
     },{
@@ -32,7 +29,6 @@
         "category":"Boshqa",
         "price":25,
         "sold":30,
-        "size":[0.1,1],
         "image":"../images/Boshqa/4.jpg",
         "title":"BAA 🇦🇪"
     }
