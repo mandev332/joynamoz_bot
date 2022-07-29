@@ -26,7 +26,7 @@ bot.onText(/\/start/, (msg) => {
   if (msg.from.is_bot) return;
   bot.sendMessage(
     msg.from.id,
-    "Assalomu alaykum! " + "\n" + msg.from.first_name + "\nRO'YXAT ni bosing!",
+    "Assalomu alaykum! " + "\n" + msg.from.first_name + "\nRO'YXAT 📋ni bosing!",
     {
       reply_markup: {
         keyboard: [keyboards.menu],
