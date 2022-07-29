@@ -18,7 +18,7 @@ export default {
         i.product_id +
         ": " +
         i.name +
-        "\nNarxi: " +
+        "\n   Narxi: " +
         i.price +
         "\n   O'lchami: " +
         (i.size[0] ? i.size[0] : 1) +
