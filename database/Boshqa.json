@@ -2,6 +2,7 @@
     {
         "id":1,
         "name":"Tasbeh",
+        "category":"Boshqa",
         "price":15,
         "sold":18,
         "size":[99,1],
@@ -10,6 +11,7 @@
     },{
         "id":2,
         "name":"Mushkanbar",
+        "category":"Boshqa",
         "price":10,
         "sold":15,
         "size":[1,1],
@@ -18,6 +20,7 @@
     },{
         "id":3,
         "name":"Misfoq",
+        "category":"Boshqa",
         "price":20,
         "sold":25,
         "size":[1,1],
@@ -26,6 +29,7 @@
     },{
         "id":4,
         "name":"Zam-zam",
+        "category":"Boshqa",
         "price":25,
         "sold":30,
         "size":[0.1,1],

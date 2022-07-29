@@ -10,14 +10,22 @@ export default {
 
     return JSON.parse(datas);
   },
+  write: function (filepath, data) {
+    fs.writeFileSync(
+      path.join(process.cwd(), "database", filepath + ".json"),
+      JSON.stringify(data, null, 4)
+    );
+  },
 
   toMessage: function (user) {
-    let xabar = `Zakas  📌\nID:${user.user_id}\n${user.username}: (@${user.nik_name}),\nKontact: ${user.contact},\nAdress: ${user.adress},Mahsulot: \n`;
+    let xabar = `Zakas  📌\nID:${user.user_id}\n${user.username}: (@${user.nik_name}),\nKontact: ${user.contact},\nAdress: ${user.adress},\nSana: ${user.date},\nMahsulot: \n`;
     for (let i of user.products) {
       xabar +=
         i.product_id +
         ": " +
         i.name +
+        "\n   Bo'lim: " +
+        i.category +
         "\n   Narxi: " +
         i.price +
         "\n   O'lchami: " +

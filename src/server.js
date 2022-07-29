@@ -26,7 +26,10 @@ bot.onText(/\/start/, (msg) => {
   if (msg.from.is_bot) return;
   bot.sendMessage(
     msg.from.id,
-    "Assalomu alaykum! " + "\n" + msg.from.first_name + "\nRO'YXAT 📋ni bosing!",
+    "Assalomu alaykum! " +
+      "\n" +
+      msg.from.first_name +
+      "\nRO'YXAT 📋ni bosing!",
     {
       reply_markup: {
         keyboard: [keyboards.menu],
@@ -47,6 +50,7 @@ bot.on("message", (msg) => {
   if (msg.text == "RO'YXAT 📋") {
     productlar = [];
     if (msg.from.id == admin) {
+      console.log("admin");
       bot.sendMessage(chat_id, "Siz 👮‍♂️ (ADMIN)", {
         reply_markup: {
           keyboard: keyboards.admin,
@@ -61,6 +65,9 @@ bot.on("message", (msg) => {
         },
       });
     }
+  } else if (msg.text == "Ko'rish") {
+    let data = func.read("Order");
+    console.log(data);
   } else if (
     msg.text == "Joynamoz" ||
     msg.text == "Quron" ||
@@ -145,6 +152,7 @@ bot.on("callback_query", async (msg) => {
             nik_name: msg.from.username,
             contact: findUser.contact,
             adress: findUser.adress,
+            date: Date(new Date()).split(" ").splice(1, 3).join("-"),
             products: findUser?.products?.length
               ? [...findUser.products, ...productlar]
               : [...productlar],
@@ -158,12 +166,9 @@ bot.on("callback_query", async (msg) => {
           } else {
             data.push(obj);
           }
-          await fs.writeFileSync(
-            path.join(process.cwd(), "database", "Order.json"),
-            JSON.stringify(data, null, 4)
-          );
+          func.write("Order", data);
           bot.deleteMessage(chat_id, msg.message.message_id);
-          bot.sendMessage(chat_id, "✔️", {
+          bot.sendMessage(chat_id, "✅ Siz bilan Admin bog'lanadi!", {
             reply_markup: {
               keyboard: [[{ text: "RO'YXAT 📋" }]],
               resize_keyboard: true,
@@ -198,19 +203,17 @@ bot.on("callback_query", async (msg) => {
           nik_name: msg.from.username,
           contact,
           adress: Adress,
+          date: Date(new Date()).split(" ").splice(1, 3).join("-"),
           products: productlar,
         };
         obj.products.map((el, i) =>
           el.product_id ? el : (el.product_id = i + 1)
         );
         data.push(obj);
-        await fs.writeFileSync(
-          path.join(process.cwd(), "database", "Order.json"),
-          JSON.stringify(data, null, 4)
-        );
+        func.write("Order", data);
         toM(obj);
         bot.deleteMessage(chat_id, msg.message.message_id);
-        bot.sendMessage(chat_id, "✔️", {
+        bot.sendMessage(chat_id, "✅ Siz bilan Admin bog'lanadi!", {
           reply_markup: {
             keyboard: [[{ text: "RO'YXAT 📋" }]],
             resize_keyboard: true,
@@ -222,7 +225,6 @@ bot.on("callback_query", async (msg) => {
       bot.deleteMessage(chat_id, msg.message.message_id);
     } else if (parseInt(msg.data)) {
       try {
-        // if (message_id) bot.deleteMessage(chat_id, msg.message.message_id);
         let data = func.read(filePath);
         let find = data.find((e) => e.id == msg.data);
         let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
@@ -300,14 +302,11 @@ bot.on("callback_query", async (msg) => {
         el.product_id = i + 1;
         return el;
       });
-      await fs.writeFileSync(
-        path.join(process.cwd(), "database", "Order.json"),
-        JSON.stringify(orders, null, 4)
-      );
+      func.write("Order", orders);
       toM(orders[find]);
       bot.deleteMessage(chat_id, msg.message.message_id);
 
-      bot.sendMessage(chat_id, "✔️", {
+      bot.sendMessage(chat_id, "✅ " + id + "-o'chirildi", {
         reply_markup: {
           keyboard: [keyboards.menu],
           resize_keyboard: true,
@@ -329,7 +328,6 @@ bot.on("contact", (msg) => {
   chat += 1;
   const chat_id = msg.from.id;
   contact = "+" + msg.contact.phone_number;
-  console.log(contact);
   bot.sendMessage(chat_id, "Joylashuvni jo'nating", {
     reply_markup: {
       keyboard: keyboards.location,
@@ -344,7 +342,6 @@ bot.on("location", async (msg) => {
   const chat_id = msg.from.id;
   const { latitude, longitude } = msg.location;
   let locatsiya = await geoFinder(latitude, longitude);
-  console.log(locatsiya);
   Adress = locatsiya.results[0].formatted;
   bot.sendMessage(chat_id, "Manzilingiz: " + Adress + " ni tasdiqlang!", {
     reply_markup: {
