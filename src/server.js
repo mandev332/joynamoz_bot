@@ -1,7 +1,5 @@
 import { config } from "dotenv";
 config();
-import fs from "fs";
-import path from "path";
 import TelegramBot from "node-telegram-bot-api";
 import geoFinder from "../utils/geoFinder.js";
 import func from "../utils/FS.js";
