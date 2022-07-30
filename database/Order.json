@@ -22,29 +22,5 @@
                 "title": "O'zbekiston 🇺🇿"
             }
         ]
-    },
-    {
-        "user_id": 1068892588,
-        "username": "Kamoliddin",
-        "nik_name": "kamoljon",
-        "contact": "+998941984434",
-        "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
-        "date": "Jul-27-2022",
-        "products": [
-            {
-                "product_id": 1,
-                "id": 3,
-                "name": "Misfoq",
-                "category": "Boshqa",
-                "price": 20,
-                "sold": 25,
-                "size": [
-                    1,
-                    1
-                ],
-                "image": "../images/Boshqa/3.jpg",
-                "title": "BAA 🇦🇪"
-            }
-        ]
     }
 ]

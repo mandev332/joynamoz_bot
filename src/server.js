@@ -19,6 +19,7 @@ let Adress = "";
 let contact = "";
 let image = false;
 let filePath = "";
+let deleteUser = false;
 let old_order = false;
 let productlar = [];
 
@@ -74,28 +75,30 @@ bot.on("message", async (msg) => {
       data.forEach((e) => {
         toMessageAdmin(e);
       });
-    } else if (
-      msg.text == "Qo'shish" ||
-      msg.text == "O'chirish" ||
-      msg.text == "O'zgartirish"
-    ) {
-      bot.sendMessage(
-        chat_id,
-        "Hozircha " + msg.text.toLowerCase() + " imkonsiz"
-      );
-
+    } else if (msg.text == "Qo'shish" || msg.text == "O'zgartirish") {
       // bot.sendMessage(admin, "Mahsulot bo'limini tanlang!", {
       //   reply_markup: {
       //     keyboard: keyboards.royxat2,
       //     resize_keyboard: true,
       //   },
       // });
+    } else if (msg.text == "O'chirish") {
+      bot.sendMessage(chat_id, "Xaridorning telefon raqamini kiriting!");
+      deleteUser = true;
     } else if (msg.from.id == admin && msg.text[0] == "+") {
       if (msg.text.length == 13) {
         let data = func.read("Order");
-        let user = data.find((e) => e.contact == msg.text);
-        if (user) toMessageAdmin(user);
-        else bot.sendMessage(chat_id, "Topilmadi❗️");
+        if (deleteUser) {
+          let users = data.filter((e) => e.contact != msg.text);
+          func.write("Order", users);
+          deleteUser = false;
+          bot.sendMessage(admin, "✅ Xaridor o'chirildi!");
+          bot.deleteMessage(admin, msg.message.message_id);
+        } else {
+          let user = data.find((e) => e.contact == msg.text);
+          if (user) toMessageAdmin(user);
+          else bot.sendMessage(admin, "Topilmadi❗️");
+        }
       } else {
         bot.sendMessage(chat_id, "Xato ❌");
       }
@@ -372,9 +375,9 @@ bot.on("callback_query", async (msg) => {
 
 bot.on("contact", (msg) => {
   const chat_id = msg.from.id;
+  contact = "+" + msg.contact.phone_number;
   if (productlar.length) {
     chat += 1;
-    contact = "+" + msg.contact.phone_number;
     bot.sendMessage(chat_id, "Joylashuvni jo'nating", {
       reply_markup: {
         keyboard: keyboards.location,
