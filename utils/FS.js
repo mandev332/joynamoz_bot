@@ -34,4 +34,13 @@ export default {
     }
     return xabar;
   },
+  count: function (str, arg) {
+    let c = 0;
+    for (let i of str) {
+      if (i == arg) {
+        c++;
+      }
+    }
+    return c;
+  },
 };

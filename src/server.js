@@ -10,7 +10,6 @@ const bot = new TelegramBot(process.env.API_KEY, {
 });
 
 bot.on("error", console.error);
-
 const admin = 1434141401;
 
 let con = 0;
@@ -53,6 +52,22 @@ bot.on("message", async (msg) => {
   try {
     chat += 1;
     const chat_id = msg.from.id;
+    if (image && typeof image != "boolean" && func.count(msg.text, "/") == 3) {
+      let data = func.read(filePath);
+      let [name, price, sold, title] = msg.text.split("/");
+      let obj = {
+        id: data.length ? data.length + 1 : 1,
+        name,
+        category: filePath,
+        price,
+        sold,
+        image: "../" + image,
+        title,
+      };
+      data.push(obj);
+      func.write(filePath, data);
+    }
+
     if (msg.text == "RO'YXAT 📋") {
       productlar = [];
       if (msg.from.id == admin) {
@@ -75,15 +90,19 @@ bot.on("message", async (msg) => {
       data.forEach((e) => {
         toMessageAdmin(e);
       });
-    } else if (msg.text == "Qo'shish" || msg.text == "O'zgartirish") {
-      // bot.sendMessage(admin, "Mahsulot bo'limini tanlang!", {
-      //   reply_markup: {
-      //     keyboard: keyboards.royxat2,
-      //     resize_keyboard: true,
-      //   },
-      // });
+    } else if (msg.text == "Qo'shish") {
+      // bot.sendMessage(
+      //   admin,
+      //   "Hozircha " + msg.text.toLowerCase() + " imkoni yo'q!"
+      // );
+      bot.sendMessage(admin, "Mahsulot bo'limini tanlang!", {
+        reply_markup: {
+          keyboard: keyboards.royxat2,
+          resize_keyboard: true,
+        },
+      });
     } else if (msg.text == "O'chirish") {
-      bot.sendMessage(chat_id, "Xaridorning telefon raqamini kiriting!");
+      bot.sendMessage(admin, "Xaridorning telefon raqamini kiriting!");
       deleteUser = true;
     } else if (msg.from.id == admin && msg.text[0] == "+") {
       if (msg.text.length == 13) {
@@ -102,15 +121,17 @@ bot.on("message", async (msg) => {
       } else {
         bot.sendMessage(chat_id, "Xato ❌");
       }
-      // } else if (
-      //   msg.text == "Joynamoz+" ||
-      //   msg.text == "Quron+" ||
-      //   msg.text == "Nabor+" ||
-      //   msg.text == "Boshqa+"
-      // ) {
-      //   filePath = msg.text.slice(0, msg.text.length - 1);
-      //   bot.sendMessage(chat_id, "Hozircha qo'sha olmaysiz!");
-      //   image = true;
+    } else if (
+      msg.text == "Joynamoz+" ||
+      msg.text == "Quron+" ||
+      msg.text == "Nabor+" ||
+      msg.text == "Boshqa+"
+    ) {
+      filePath = msg.text.slice(0, msg.text.length - 1);
+      bot.sendMessage(chat_id, "Mahsulot rasmini yuboring!", {
+        reply_markup: { keyboard: keyboards.back, resize_keyboard: true },
+      });
+      image = true;
     } else if (
       msg.text == "Joynamoz" ||
       msg.text == "Quron" ||
@@ -163,7 +184,7 @@ bot.on("message", async (msg) => {
       chat = 0;
     }
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 });
 
@@ -282,32 +303,24 @@ bot.on("callback_query", async (msg) => {
         let find = data.find((e) => e.id == msg.data);
         let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
 
-        find.size && find.size instanceof Array
-          ? (desc += `O'lchami: ${find.size[0]} x ${find.size[1]}`)
-          : (desc += ` `);
-
-        bot.sendPhoto(
-          chat_id,
-          "./images/" + filePath + "/" + msg.data + ".jpg",
-          {
-            caption: `${desc}`,
-            parse_mode: "HTML",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "🛒",
-                    callback_data: "Z_" + msg.data,
-                  },
-                  {
-                    text: "❌",
-                    callback_data: "X_" + msg.data,
-                  },
-                ],
+        bot.sendPhoto(chat_id, find.image, {
+          caption: `${desc}`,
+          parse_mode: "HTML",
+          reply_markup: {
+            inline_keyboard: [
+              [
+                {
+                  text: "🛒",
+                  callback_data: "Z_" + msg.data,
+                },
+                {
+                  text: "❌",
+                  callback_data: "X_" + msg.data,
+                },
               ],
-            },
-          }
-        );
+            ],
+          },
+        });
       } catch (err) {}
     } else if (msg.data == "Order") {
       let datas = func.read(msg.data);
@@ -418,5 +431,18 @@ bot.on("location", async (msg) => {
     con = 1;
   } else {
     bot.sendMessage(chat_id, "Avval mahsulot tanlang!");
+  }
+});
+
+bot.on("photo", async (msg) => {
+  if (image) {
+    image = await bot.downloadFile(
+      msg.photo[msg.photo.length - 1].file_id,
+      "./images/" + (filePath ? filePath : "")
+    );
+    bot.sendMessage(
+      admin,
+      "Nomi/narxi/eski narxi/qisqacha ma'lumot\nKiriting ('/' bilan)!\nMasalan: Qur'on (Arab)/175/200/BAA 🇦🇪"
+    );
   }
 });

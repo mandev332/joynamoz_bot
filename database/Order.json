@@ -1,25 +1,21 @@
 [
     {
-        "user_id": 1068892885,
-        "username": "Ohun",
-        "nik_name": "ohunbek",
-        "contact": "+998941984344",
-        "adress": "Chilanzar-9 13, Tashkent, Uzbekistan, 100097",
-        "date": "Jul-24-2022",
+        "user_id": 1068892555,
+        "username": "𝐌𝐀𝐍 𝐃𝐄𝐕",
+        "nik_name": "nodirbek_dev",
+        "contact": "+998941984332",
+        "adress": "Qatartal Street, Tashkent, Uzbekistan, 100097",
+        "date": "Jul-30-2022",
         "products": [
             {
-                "product_id": 1,
-                "id": 3,
-                "name": "Qur'on Tarjima (O'zb)",
+                "id": 1,
+                "name": "Tasbeh",
                 "category": "Boshqa",
-                "price": 50,
-                "sold": 65,
-                "size": [
-                    1,
-                    1
-                ],
-                "image": "../images/quron/3.jpg",
-                "title": "O'zbekiston 🇺🇿"
+                "price": 15,
+                "sold": 18,
+                "image": "../images/Boshqa/tasbeh1.jpg",
+                "title": "Turkiya 🇹🇷",
+                "product_id": 1
             }
         ]
     }

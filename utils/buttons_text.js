@@ -37,6 +37,9 @@ export default {
     text: "Lokatsiya 📍",
     request_location: true,
   },
+  save: {
+    text: "Saqlash📥",
+  },
   GET: {
     text: "Ko'rish",
   },
