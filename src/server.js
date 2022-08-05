@@ -530,7 +530,7 @@ bot.on("photo", async (msg) => {
         });
       }
       func.write(filePath, data);
-      console.log("stiker1");
+      console.log("stiker2");
 
       await bot.sendSticker(
         admin,
