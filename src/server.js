@@ -489,6 +489,7 @@ bot.on("location", async (msg) => {
 
 bot.on("photo", async (msg) => {
   if (image) {
+    console.log(filePath);
     image = await bot.downloadFile(
       msg.photo[msg.photo.length - 1].file_id,
       "./images/" + (filePath ? filePath : "")
