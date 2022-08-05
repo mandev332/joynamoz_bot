@@ -71,7 +71,7 @@ bot.on("message", async (msg) => {
       if (func.count(msg.text, "/") == 3) {
         let [name, price, sold, title] = msg.text.split("/");
         let obj = {
-          id: data.length ? data.length + 1 : 1,
+          id: data.length ? parseInt(data[data.length - 1].id) + 1 : 1,
           name,
           category: filePath,
           price,
@@ -489,7 +489,6 @@ bot.on("location", async (msg) => {
 
 bot.on("photo", async (msg) => {
   if (image) {
-    console.log(filePath);
     image = await bot.downloadFile(
       msg.photo[msg.photo.length - 1].file_id,
       "./images/" + (filePath ? filePath : "")

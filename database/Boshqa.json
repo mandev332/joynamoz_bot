@@ -1,2 +1,56 @@
 [
-  ]
+    {
+        "id": 1,
+        "name": "Gul",
+        "category": "Boshqa",
+        "price": "100",
+        "sold": "110",
+        "image": "./images/Boshqa/file_23.jpg",
+        "title": "mehribonim onam"
+    },
+    {
+        "id": 2,
+        "name": "Tasbeh",
+        "category": "Boshqa",
+        "price": "15",
+        "sold": "18",
+        "image": "./images/Boshqa/file_6.jpg",
+        "title": "turli rangda"
+    },
+    {
+        "id": "3",
+        "name": "Mushkanbar",
+        "category": "Boshqa",
+        "price": "30",
+        "sold": "35",
+        "image": "./images/Boshqa/file_29.jpg",
+        "title": "Arab.🇦🇪"
+    },
+    {
+        "id": 4,
+        "name": "Misvoq",
+        "category": "Boshqa",
+        "price": "10",
+        "sold": "12",
+        "image": "./images/Boshqa/file_24.jpg",
+        "title": "Arab.🇦🇪"
+    },
+    {
+        "id": 5,
+        "name": "To‘rt",
+        "category": "Boshqa",
+        "price": "150",
+        "sold": "160",
+        "image": "./images/Boshqa/file_27.jpg",
+        "title": "rasmlar va tabrilar"
+    },
+    {
+        "id": 6,
+        "name": "Zam zam",
+        "category": "Boshqa",
+        "price": "10",
+        "sold": "11",
+        "image": "./images/Boshqa/file_28.jpg",
+        "title": "200 ml"
+    }
+]

@@ -1,3 +1,38 @@
 [
-   
+    {
+        "id": 1,
+        "name": "Jannat",
+        "category": "Nabor",
+        "price": "350",
+        "sold": "380",
+        "image": "./images/Nabor/file_4.jpg",
+        "title": "2 qavat 1 kishilik"
+    },
+    {
+        "id": 2,
+        "name": "Kaba",
+        "category": "Nabor",
+        "price": "400",
+        "sold": "450",
+        "image": "./images/Nabor/file_20.jpg",
+        "title": "2 qavat 1 kishilik"
+    },
+    {
+        "id": 3,
+        "name": "Ota-onaga",
+        "category": "Nabor",
+        "price": "500",
+        "sold": "550",
+        "image": "./images/Nabor/file_21.jpg",
+        "title": "2 qavat 2 kishilik"
+    },
+    {
+        "id": 4,
+        "name": "Chemadan",
+        "category": "Nabor",
+        "price": "600",
+        "sold": "650",
+        "image": "./images/Nabor/file_22.jpg",
+        "title": "audio ruchkasi bilan"
+    }
 ]

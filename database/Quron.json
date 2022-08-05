@@ -1,3 +1,29 @@
 [
-  
+    {
+        "id": 1,
+        "name": "Qur‘on",
+        "category": "Quron",
+        "price": "60",
+        "sold": "70",
+        "image": "./images/Quron/file_17.jpg",
+        "title": "(arab)tarjimasiz"
+    },
+    {
+        "id": 2,
+        "name": "Qur‘on",
+        "category": "Quron",
+        "price": "70",
+        "sold": "80",
+        "image": "./images/Quron/file_10.jpg",
+        "title": "(arab)tarjimasiz"
+    },
+    {
+        "id": 3,
+        "name": "Qur‘on",
+        "category": "Quron",
+        "price": "90",
+        "sold": "100",
+        "image": "./images/Quron/file_16.jpg",
+        "title": "(uzb)tarjima bilan"
+    }
 ]

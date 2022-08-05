@@ -1,3 +1,29 @@
 [
-   
+    {
+        "id": 1,
+        "name": "Joynamoz",
+        "category": "Joynamoz",
+        "price": "30",
+        "sold": "35",
+        "image": "./images/Joynamoz/file_7.jpg",
+        "title": "zar chiziq"
+    },
+    {
+        "id": 2,
+        "name": "Joynamoz",
+        "category": "Joynamoz",
+        "price": "70",
+        "sold": "85",
+        "image": "./images/Joynamoz/file_18.jpg",
+        "title": "mehli"
+    },
+    {
+        "id": 3,
+        "name": "Joynamoz",
+        "category": "Joynamoz",
+        "price": "170",
+        "sold": "180",
+        "image": "./images/Joynamoz/file_19.jpg",
+        "title": "elektron (ovozli)"
+    }
 ]
