@@ -17,6 +17,7 @@ let chat = 0;
 let Adress = "";
 let contact = "";
 let image = false;
+let update = false;
 let filePath = "";
 let deleteUser = false;
 let old_order = false;
@@ -24,23 +25,36 @@ let productlar = [];
 
 bot.onText(/\/start/, async (msg) => {
   if (msg.from.is_bot) return;
-  await bot.sendSticker(
-    msg.from.id,
-    "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/11.webp"
-  );
-  await bot.sendMessage(
-    msg.from.id,
-    "Assalomu alaykum! " +
-      "\n" +
-      msg.from.first_name +
-      "\nRO'YXAT 📋ni bosing!",
-    {
-      reply_markup: {
-        keyboard: [keyboards.menu],
-        resize_keyboard: true,
-      },
-    }
-  );
+  if (msg.from.id == admin) {
+    await bot.sendSticker(
+      admin,
+      "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/2.webp",
+      {
+        reply_markup: {
+          keyboard: keyboards.admin,
+          resize_keyboard: true,
+        },
+      }
+    );
+  } else {
+    await bot.sendSticker(
+      msg.from.id,
+      "https://tlgrm.eu/_/stickers/fc2/01a/fc201aad-5ea0-48fd-b779-f8a237ff21ae/2.webp"
+    );
+    await bot.sendMessage(
+      msg.from.id,
+      "Assalomu alaykum! " +
+        "\n" +
+        msg.from.first_name +
+        "\nRO'YXAT 📋ni bosing!",
+      {
+        reply_markup: {
+          keyboard: [keyboards.menu],
+          resize_keyboard: true,
+        },
+      }
+    );
+  }
 });
 
 async function toMessageAdmin(arg) {
@@ -52,71 +66,87 @@ bot.on("message", async (msg) => {
   try {
     chat += 1;
     const chat_id = msg.from.id;
-    if (image && typeof image != "boolean" && func.count(msg.text, "/") == 3) {
+    if (typeof image != "boolean") {
       let data = func.read(filePath);
-      let [name, price, sold, title] = msg.text.split("/");
-      let obj = {
-        id: data.length ? data.length + 1 : 1,
-        name,
-        category: filePath,
-        price,
-        sold,
-        image: "../" + image,
-        title,
-      };
-      data.push(obj);
-      func.write(filePath, data);
-    }
-
-    if (msg.text == "RO'YXAT 📋") {
-      productlar = [];
-      if (msg.from.id == admin) {
-        bot.sendMessage(chat_id, "Siz 👮‍♂️ (ADMIN)", {
-          reply_markup: {
-            keyboard: keyboards.admin,
-            resize_keyboard: true,
-          },
-        });
-      } else {
-        bot.sendMessage(chat_id, "Sovg'alar 🎁", {
-          reply_markup: {
-            keyboard: keyboards.royxat,
-            resize_keyboard: true,
-          },
+      if (func.count(msg.text, "/") == 3) {
+        let [name, price, sold, title] = msg.text.split("/");
+        let obj = {
+          id: data.length ? data.length + 1 : 1,
+          name,
+          category: filePath,
+          price,
+          sold,
+          image: "./" + image,
+          title,
+        };
+        data.push(obj);
+      } else if (func.count(msg.text, "/") == 4) {
+        let [id, name, price, sold, title] = msg.caption.split("/");
+        let obj = {
+          id,
+          name,
+          category: filePath,
+          price,
+          sold,
+          image: "./" + image,
+          title,
+        };
+        data = data.map((e) => {
+          if (e.id == id) {
+            func.remove(e.image);
+            return obj;
+          } else {
+            return e;
+          }
         });
       }
+      func.write(filePath, data);
+      await bot.sendSticker(
+        admin,
+        "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/10.webp",
+        {
+          reply_markup: { keyboard: keyboards.back, resize_keyboard: true },
+        }
+      );
+    }
+    if (msg.text == "RO'YXAT 📋") {
+      productlar = [];
+
+      bot.sendMessage(chat_id, "Sovg'alar 🎁", {
+        reply_markup: {
+          keyboard: keyboards.royxat,
+          resize_keyboard: true,
+        },
+      });
     } else if (msg.text == "Ko'rish") {
       let data = func.read("Order");
       data.forEach((e) => {
         toMessageAdmin(e);
       });
-    } else if (msg.text == "Qo'shish") {
-      // bot.sendMessage(
-      //   admin,
-      //   "Hozircha " + msg.text.toLowerCase() + " imkoni yo'q!"
-      // );
+    } else if (msg.text == "O'zgartirish" || msg.text == "Qo'shish") {
       bot.sendMessage(admin, "Mahsulot bo'limini tanlang!", {
         reply_markup: {
           keyboard: keyboards.royxat2,
           resize_keyboard: true,
         },
       });
+
+      update = msg.text == "O'zgartirish" ? true : false;
     } else if (msg.text == "O'chirish") {
       bot.sendMessage(admin, "Xaridorning telefon raqamini kiriting!");
       deleteUser = true;
     } else if (msg.from.id == admin && msg.text[0] == "+") {
       if (msg.text.length == 13) {
         let data = func.read("Order");
-        if (deleteUser) {
+        let user = data.find((e) => e.contact == msg.text);
+        console.log(user);
+        if (deleteUser && user) {
           let users = data.filter((e) => e.contact != msg.text);
           func.write("Order", users);
+          bot.sendMessage(admin, "✅ " + user.username + " o'chirildi!");
           deleteUser = false;
-          bot.sendMessage(admin, "✅ Xaridor o'chirildi!");
-          bot.deleteMessage(admin, msg.message.message_id);
-        } else {
-          let user = data.find((e) => e.contact == msg.text);
-          if (user) toMessageAdmin(user);
-          else bot.sendMessage(admin, "Topilmadi❗️");
+        } else if (deleteUser && !user) {
+          bot.sendMessage(admin, "Topilmadi❗️");
         }
       } else {
         bot.sendMessage(chat_id, "Xato ❌");
@@ -128,9 +158,17 @@ bot.on("message", async (msg) => {
       msg.text == "Boshqa+"
     ) {
       filePath = msg.text.slice(0, msg.text.length - 1);
-      bot.sendMessage(chat_id, "Mahsulot rasmini yuboring!", {
-        reply_markup: { keyboard: keyboards.back, resize_keyboard: true },
-      });
+      bot.sendMessage(
+        admin,
+        "Mahsulot rasmini yuboring!\n" +
+          (update ? "Raqami/" : "") +
+          "Nomi/narxi/eski narxi/qisqacha ma'lumot\nKiriting ('/' bilan)!\nMasalan:" +
+          (update ? "1/" : "") +
+          "Qur'on (Arab)/175/200/BAA 🇦🇪",
+        {
+          reply_markup: { keyboard: keyboards.back, resize_keyboard: true },
+        }
+      );
       image = true;
     } else if (
       msg.text == "Joynamoz" ||
@@ -175,13 +213,26 @@ bot.on("message", async (msg) => {
         },
       });
     } else if (msg.text == "Ortga") {
-      bot.sendMessage(chat_id, "Sovg'alar 🎁", {
-        reply_markup: {
-          keyboard: [keyboards.menu],
-          resize_keyboard: true,
-        },
-      });
-      chat = 0;
+      if (msg.from.id == admin) {
+        await bot.sendSticker(
+          admin,
+          "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/2.webp",
+          {
+            reply_markup: {
+              keyboard: keyboards.admin,
+              resize_keyboard: true,
+            },
+          }
+        );
+      } else {
+        bot.sendMessage(chat_id, "Sovg'alar 🎁", {
+          reply_markup: {
+            keyboard: [keyboards.menu],
+            resize_keyboard: true,
+          },
+        });
+        chat = 0;
+      }
     }
   } catch (e) {
     console.log(e.message);
@@ -298,30 +349,28 @@ bot.on("callback_query", async (msg) => {
     } else if (msg.data[0] == "X") {
       bot.deleteMessage(chat_id, msg.message.message_id);
     } else if (parseInt(msg.data)) {
-      try {
-        let data = func.read(filePath);
-        let find = data.find((e) => e.id == msg.data);
-        let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
+      let data = func.read(filePath);
+      let find = data.find((e) => e.id == msg.data);
+      let desc = `Nomi: ${find.name}\nNarxi: ${find.price} ming \nEski narxi: <del>${find.sold}</del> ming\nQo'shimcha ma'lumot: ${find.title}\n`;
 
-        bot.sendPhoto(chat_id, find.image, {
-          caption: `${desc}`,
-          parse_mode: "HTML",
-          reply_markup: {
-            inline_keyboard: [
-              [
-                {
-                  text: "🛒",
-                  callback_data: "Z_" + msg.data,
-                },
-                {
-                  text: "❌",
-                  callback_data: "X_" + msg.data,
-                },
-              ],
+      bot.sendPhoto(chat_id, find.image, {
+        caption: `${desc}`,
+        parse_mode: "HTML",
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "🛒",
+                callback_data: "Z_" + msg.data,
+              },
+              {
+                text: "❌",
+                callback_data: "X_" + msg.data,
+              },
             ],
-          },
-        });
-      } catch (err) {}
+          ],
+        },
+      });
     } else if (msg.data == "Order") {
       let datas = func.read(msg.data);
       let desc = ``;
@@ -371,22 +420,19 @@ bot.on("callback_query", async (msg) => {
       func.write("Order", orders);
       toMessageAdmin(orders[find]);
       bot.deleteMessage(chat_id, msg.message.message_id);
-
       bot.sendMessage(chat_id, "✅ " + id + "-o'chirildi", {
         reply_markup: {
           keyboard: [keyboards.menu],
           resize_keyboard: true,
         },
       });
-    } else if (msg.data == "Ortga") {
-      con = 0;
     }
   } catch (err) {
     console.log(err);
   }
 });
 
-bot.on("contact", (msg) => {
+bot.on("contact", async (msg) => {
   const chat_id = msg.from.id;
   contact = "+" + msg.contact.phone_number;
   if (productlar.length) {
@@ -399,6 +445,10 @@ bot.on("contact", (msg) => {
       },
     });
   } else {
+    await bot.sendSticker(
+      chat_id,
+      "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/1.webp"
+    );
     bot.sendMessage(chat_id, "Avval mahsulot tanlang!");
   }
 });
@@ -430,19 +480,78 @@ bot.on("location", async (msg) => {
     });
     con = 1;
   } else {
+    await bot.sendSticker(
+      chat_id,
+      "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/1.webp"
+    );
     bot.sendMessage(chat_id, "Avval mahsulot tanlang!");
   }
 });
 
 bot.on("photo", async (msg) => {
+  console.log(image);
   if (image) {
     image = await bot.downloadFile(
       msg.photo[msg.photo.length - 1].file_id,
       "./images/" + (filePath ? filePath : "")
     );
-    bot.sendMessage(
-      admin,
-      "Nomi/narxi/eski narxi/qisqacha ma'lumot\nKiriting ('/' bilan)!\nMasalan: Qur'on (Arab)/175/200/BAA 🇦🇪"
-    );
+    if (msg?.caption) {
+      let data = func.read(filePath);
+      if (func.count(msg.caption, "/") == 3) {
+        let [name, price, sold, title] = msg.caption.split("/");
+        let obj = {
+          id: data.length ? data.length + 1 : 1,
+          name,
+          category: filePath,
+          price,
+          sold,
+          image: "./" + image,
+          title,
+        };
+        data.push(obj);
+      } else if (func.count(msg.caption, "/") == 4) {
+        let [id, name, price, sold, title] = msg.caption.split("/");
+        let obj = {
+          id,
+          name,
+          category: filePath,
+          price,
+          sold,
+          image: "./" + image,
+          title,
+        };
+        data = data.map((e) => {
+          if (e.id == id) {
+            func.remove(e.image);
+            return obj;
+          } else {
+            return e;
+          }
+        });
+      }
+      func.write(filePath, data);
+      await bot.sendSticker(
+        admin,
+        "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/10.webp",
+        {
+          reply_markup: { keyboard: keyboards.back, resize_keyboard: true },
+        }
+      );
+    } else {
+      bot.sendMessage(
+        admin,
+        (update ? "Raqami/" : "") +
+          "Nomi/narxi/eski narxi/qisqacha ma'lumot\nKiriting ('/' bilan)!\nMasalan:" +
+          (update ? "1/" : "") +
+          "Qur'on (Arab)/175/200/BAA 🇦🇪"
+      );
+    }
+  } else {
+    bot.sendMessage(admin, "Mahsulot bo'limini tanlang!", {
+      reply_markup: {
+        keyboard: keyboards.royxat2,
+        resize_keyboard: true,
+      },
+    });
   }
 });

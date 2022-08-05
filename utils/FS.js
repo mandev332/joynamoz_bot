@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs, { fstat } from "fs";
 import path from "path";
 
 export default {
@@ -33,6 +33,10 @@ export default {
         "\n";
     }
     return xabar;
+  },
+  remove: function (filePath) {
+    console.log(path.join(process.cwd(), filePath));
+    fs.unlinkSync(path.join(process.cwd(), filePath));
   },
   count: function (str, arg) {
     let c = 0;

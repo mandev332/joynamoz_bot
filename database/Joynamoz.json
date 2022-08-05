@@ -1,35 +1,3 @@
 [
-    {
-        "id":1,
-        "name":"Iden",
-        "category":"Joynamoz",
-        "price":90,
-        "sold":110,
-        "image":"../images/joynamoz/1.jpg",
-        "title":"Turkiya 🇹🇷"
-    },{
-        "id":2,
-        "name":"Iden",
-        "category":"Joynamoz",
-        "price":65,
-        "sold":85,
-        "image":"../images/joynamoz/2.jpg",
-        "title":"Turkiya 🇹🇷"
-    },{
-        "id":3,
-        "name":"Ko'rpacha",
-        "category":"Joynamoz",
-        "price":75,
-        "sold":85,
-        "image":"../images/joynamoz/3.jpg",
-        "title":"O'zbekiston 🇺🇿"
-    },{
-        "id":4,
-        "name":"Yig'ma",
-        "category":"Joynamoz",
-        "price":100,
-        "sold":115,
-        "image":"../images/joynamoz/4.jpg",
-        "title":"Turkiya 🇹🇷"
-    }
+   
 ]
