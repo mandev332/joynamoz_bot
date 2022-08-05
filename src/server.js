@@ -528,6 +528,7 @@ bot.on("photo", async (msg) => {
         });
       }
       func.write(filePath, data);
+      image = false;
       await bot.sendSticker(
         admin,
         "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/10.webp",
