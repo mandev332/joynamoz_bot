@@ -101,6 +101,7 @@ bot.on("message", async (msg) => {
         });
       }
       func.write(filePath, data);
+      image = false;
       await bot.sendSticker(
         admin,
         "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/10.webp",
@@ -108,7 +109,6 @@ bot.on("message", async (msg) => {
           reply_markup: { keyboard: keyboards.back, resize_keyboard: true },
         }
       );
-      image = false;
     }
     if (msg.text == "RO'YXAT 📋") {
       productlar = [];
@@ -140,7 +140,6 @@ bot.on("message", async (msg) => {
       if (msg.text.length == 13) {
         let data = func.read("Order");
         let user = data.find((e) => e.contact == msg.text);
-        console.log(user);
         if (deleteUser && user) {
           let users = data.filter((e) => e.contact != msg.text);
           func.write("Order", users);
@@ -337,7 +336,6 @@ bot.on("callback_query", async (msg) => {
         );
         data.push(obj);
         func.write("Order", data);
-        console.log(msg.message.message_id);
         toMessageAdmin(obj);
         await bot.sendMessage(chat_id, "✅ Siz bilan Admin bog'lanadi!", {
           reply_markup: {
@@ -530,8 +528,6 @@ bot.on("photo", async (msg) => {
         });
       }
       func.write(filePath, data);
-      console.log("stiker2");
-
       await bot.sendSticker(
         admin,
         "https://tlgrm.eu/_/stickers/380/9fb/3809fbe6-317b-3085-99e6-09e74c1044b0/10.webp",
