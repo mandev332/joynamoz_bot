@@ -489,7 +489,6 @@ bot.on("location", async (msg) => {
 });
 
 bot.on("photo", async (msg) => {
-  console.log(image);
   if (image) {
     image = await bot.downloadFile(
       msg.photo[msg.photo.length - 1].file_id,
