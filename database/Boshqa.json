@@ -27,7 +27,7 @@
         "title": "Arab.🇦🇪"
     },
     {
-        "id": 4,
+        "id": "4",
         "name": "Misvoq",
         "category": "Boshqa",
         "price": "10",
@@ -52,5 +52,14 @@
         "sold": "11",
         "image": "./images/Boshqa/file_28.jpg",
         "title": "200 ml"
+    },
+    {
+        "id": 7,
+        "name": "Do‘ppi",
+        "category": "Boshqa",
+        "price": "30",
+        "sold": "35",
+        "image": "./images/Boshqa/file_30.jpg",
+        "title": "yangicha uslub"
     }
 ]

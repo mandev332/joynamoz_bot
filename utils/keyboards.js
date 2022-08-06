@@ -12,7 +12,7 @@ export default {
     [btn_t.nabor2, btn_t.boshqa2],
     [btn_t.ortga],
   ],
-  admin: [[btn_t.GET, btn_t.POST], [btn_t.PUT, btn_t.DELETE], [btn_t.ortga]],
+  admin: [[btn_t.GET, btn_t.POST], [btn_t.DELETE, btn_t.PUT], [btn_t.ortga]],
   save: [[btn_t.save]],
   contact: [[btn_t.kontact], [btn_t.ortga]],
   location: [[btn_t.location], [btn_t.ortga]],
