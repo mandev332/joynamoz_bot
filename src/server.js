@@ -10,7 +10,7 @@ const bot = new TelegramBot(process.env.API_KEY, {
 });
 
 bot.on("error", console.error);
-const admin = 1434141401;
+const admin = 1068892555;
 
 let con = 0;
 let chat = 0;
